@@ -1,0 +1,22 @@
+{
+    "name": "splitOutside",
+
+    "author": {
+        "name": "Stephen Giles",
+        "company": ""
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ingenious/splitOutside.git"
+    },
+    "description": "A swiss-army-knife parser and evaluator for text strings",
+    "version": "0.0.2",
+    "main": "splitOutside-0.2.js",
+    "devDependencies": {
+        "express": "~4.0.0",
+        "underscore": "~1.8.3",
+        "mocha": "~2.2.5",
+        "karma": "~0.12.36"
+    },
+    "readmeFilename": "README.md"
+}
