@@ -1,8 +1,54 @@
 // version 0.2
 // splitOutside and parseExpression String methods
 // Stephen Giles
- 
+
 (function() {
+
+    String.prototype.splitOutside = function(delimiting_string, context, placeholder) {
+        var string = this;
+        if (!delimiting_string || typeof delimiting_string !== 'string') {
+            return [string];
+        }
+        if (!placeholder || typeof placeholder !== 'string') {
+            placeholder = "==---==";
+        }
+        var temp_placeholder = "===-===",
+            splitter = "\\" + delimiting_string.split("").join("\\"),
+
+            // replace delimiting_strings in quotes and brackets with placeholder
+            parts = string
+
+        // 'delimiting_string' in double quotes
+            .replace(new RegExp("(" + splitter + ')(?=(?:[^"]|"[^"]*")*$)', "g"), temp_placeholder) //
+            .replace(new RegExp(splitter, "g"), placeholder) //
+            .replace(new RegExp(temp_placeholder, "g"), delimiting_string)
+
+        // 'delimiting_string' in single quotes
+        .replace(new RegExp("(" + splitter + ")(?=(?:[^']|'[^']*')*$)", 'g'), temp_placeholder) //
+            .replace(new RegExp(splitter, "g"), placeholder) //
+            .replace(new RegExp(temp_placeholder, "g"), delimiting_string)
+
+        // 'delimiting_string' in []
+        .replace(new RegExp(splitter + "(?=[^[\\]]*?\\])", "g"), placeholder)
+
+        // 'delimiting_string' in {}
+        .replace(new RegExp(splitter + "(?=[^{}]*?})", "g"), placeholder)
+
+        // 'delimiting_string' in ()
+        .replace(new RegExp(splitter + "(?=[^()]*?\\))", "g"), placeholder) //
+
+        // split using delimiting_string
+        .split(delimiting_string);
+
+        // replace placeholders in quotes and brackets with delimiting_string 
+        for (var i in parts) {
+            parts[i] = parts[i].replace(new RegExp(placeholder, "g"), delimiting_string);
+            if (typeof context !== 'undefined') {
+                parts[i] = parts[i].parseExpression(context);
+            }
+        }
+        return parts;
+    };
 
     String.prototype.parseExpression = function(context) {
         var expression = this,
@@ -181,20 +227,4 @@
         return parser.apply(context, [expression]);
     };
 
-    // AMD module
-    if (typeof define === 'function' && define.amd) {
-        define([], function() {
-            return Kaleidoscope;
-        });
-    }
-    // commonJS module
-    if (typeof exports !== 'undefined') {
-        if (typeof module !== 'undefined' && module.exports) {
-            exports = module.exports = Kaleidoscope;
-        }
-        Kaleidoscope.domReady = false;
-        exports.K = Kaleidoscope;
-    } else {
-        root.K = Kaleidoscope;
-    }
 })();
