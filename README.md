@@ -111,3 +111,41 @@
 	// returns 2
 
 ```         
+
+### Test Suite
+
+
+```
+
+Unit Tests
+    ✓ should be an Object with two methods
+    splitOutside method
+      ✓ should throw error if not applied to string
+      ✓ .splitOutside() should return array
+      ✓ should return array with original string if `delimiting_string` is not a string
+    parseExpression method
+      ✓ should throw error if not applied to string
+      ✓ .parseExpression() should return boolean if expression resolves to boolean
+      ✓ .parseExpression() should return number if expression resolves to number
+      ✓ .parseExpression() should return array if expression resolves to array
+      ✓ .parseExpression() should return object if expression resolves to object
+      ✓ .parseExpression() should return null if expression resolves to null
+      ✓ .parseExpression() should return a function if expression resolves to a function
+      ✓ .parseExpression() should return a string if expression resolves to a string
+
+Functional tests
+    splitOutside method
+      ✓ should split a string with ignoring delimiting string in quotes
+      ✓ should split a string with ignoring delimiting string in (),{},[]
+      ✓ should interpret an array [test,part] between delimiters
+      ✓ should interpret attributes and methods from a passed context between delimiters
+    parseExpression method
+      ✓ should evaluate simple arithmetic expressions
+      ✓ should evaluate simple boolean expressions
+      ✓ should evaluate methods
+      ✓ should evaluate simple objects
+      ✓ should evaluate attributes and methods of a passed context
+
+  
+
+```
