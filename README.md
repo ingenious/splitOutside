@@ -1,9 +1,9 @@
 # splitOutside
 <blockquote><strong>A swiss-army-knife attribute and text parser and evaluator</strong></blockquote>
 
-## splitOutside method API
+### splitOutside method API
 
-### Split a string with ignoring delimiting string in quotes
+#### Split a string with ignoring delimiting string in quotes
 
 ```
  	SO.splitOutside('3,4,"one, two","more text comma free"', ',', null)
@@ -16,7 +16,7 @@
  
  ```              
  
-### Split a string with ignoring delimiting string in (),{},[]
+#### Split a string with ignoring delimiting string in (),{},[]
 
 ```
 
@@ -34,7 +34,7 @@
             
  ```
 
-###Interpret an array between delimiters
+#### Interpret an array between delimiters
 
 ```
 	SO.splitOutside("3,4,[one, two, 4, 5],more text",',',null);
@@ -44,7 +44,7 @@
 	
 	
 ```               
-### Interpret attributes and methods from a passed context 
+#### Interpret attributes and methods from a passed context 
 
 ```
 
@@ -56,9 +56,9 @@
 	\\ returns [3,4,["world",42],"more text"]
 
 ```
-## parseExpression
+### parseExpression
 
-### Evaluate simple arithmetic expressions
+#### Evaluate simple arithmetic expressions
 
 ```
 	SO.parseExpression('4 * (5 - 6)');
@@ -66,14 +66,14 @@
 	\\ returns -4
 ```
 
-### Evaluate methods
+#### Evaluate methods
 
 ```
 	SO.parseExpression('Math.floor(3.9)', null);
 	// returns 3
 
 ```
-### Evaluate simple boolean expressions
+#### Evaluate simple boolean expressions
 
 ```
 
@@ -88,7 +88,7 @@
 	
 ```
 
-### Evaluate simple objects
+#### Evaluate simple objects
 
 ```
 	SO.parseExpression('{a:Math.round(8.95),b:{c:hello}}', null);
@@ -98,7 +98,7 @@
 ```
 
 
-### Evaluate attributes and methods of a passed context
+#### Evaluate attributes and methods of a passed context
 
 ```
 	SO.parseExpression('a/b()', {
